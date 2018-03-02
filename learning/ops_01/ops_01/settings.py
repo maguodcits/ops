@@ -126,3 +126,7 @@ STATICFILES_DIRS=[
     ('images',os.path.join(STATIC_ROOT,'images').replace('\\','/') ),
     # ('upload',os.path.join(STATIC_ROOT,'upload').replace('\\','/') ),
                   ]
+
+#跳转回首页
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
