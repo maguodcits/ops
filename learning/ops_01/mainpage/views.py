@@ -5,7 +5,8 @@ from .models import  PowerSetting
 import os,platform
 
 # Create your views here.
-@login_required #判断是否登录，如果没有登录则转向到登录界面
+#判断是否登录，如果没有登录则转向到登录界面
+@login_required
 def index(request):
     # 从session中取出用户名
     username=request.session.get('username','anybody')

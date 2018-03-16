@@ -3,6 +3,7 @@ import django.utils.timezone as timezon
 
 
 # Create your models here.
+#
 class PowerSetting(models.Model):
     powerName=models.CharField(max_length=100)
     powerIP=models.CharField(max_length=50)
