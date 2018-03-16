@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+<html>
+{% block head1 %}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>配置服务器信息</title>
+<link href="/static/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+{% endblock%}
+<body>
+{% block head %}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>配置服务器 <small>请选择服务器类型</small></h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <form method="get" class="form-horizontal">
+                    <div class="form-group"><label class="col-sm-1 control-label " ></label>
+                        <div class="col-sm-3">
+                            <select class="form-control m-b" name="account" id="power" onchange="select_value()">
+                                <option value="Linux">Linux</option>
+                                <option value="AIX">AIX</option>
+                                <option value="Windows"> Windows</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-w-m btn-default"  id="set_button" onclick="punch()">配置</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>已配置的服务器</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <form method="POST" class="form-horizontal">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>服务器名称</th>
+                            <th>服务器IP</th>
+                            <th>端口号</th>
+                            <th>登录用户</th>
+                            <th>连接测试</th>
+                        </tr>
+                        </thead>
+                        {% for i in settings%}
+                        <tbody>
+                        <tr>
+                            <td></td>
+                            <td>{{ i.powerName }}</td>
+                            <td>{{ i.powerIP }}</td>
+                            <td>{{ i.powerNumber }}</td>
+                            <td>{{ i.powerUsername }}</td>
+                            <td> <button type="submit" class="btn btn-default btn-xs" value={{ i.powerIP  }} name="text" ">测试</button></td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+</body>
+{% block script %}
+<script>
+    // 自动给表格添加序号
+    var return_message='2'
+    window.onload=function(){
+        //$('table tr:not(:first)').remove();
+        var len = $('table tr').length;
+        for(var i = 1;i<len;i++){
+            $('table tr:eq('+i+') td:first').text(i);
+        }
+    };
+
+    return_message= {{ return_message }}
+    if (return_message==0){
+        alert('连接测试成功！')
+    }else if (return_message==1){
+        alert('连接测试失败！')
+    };
+
+
+</script>
+{% endblock %}
+</html>

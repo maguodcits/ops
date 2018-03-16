@@ -19,6 +19,7 @@ from django.urls import path,include
 urlpatterns = [
     # path('^staticfiles/(?P<path>.*)$','django.views.static.serve',{'document_root':settings.STATICFILES_DIRS, 'show_indexes': True}),
     path('admin/', admin.site.urls),
-    path('',include("login.urls"))
+    path('',include("login.urls")),
+    path('mainpage/',include("mainpage.urls"))
 
 ]

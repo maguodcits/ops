@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'login',
+    'mainpage',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,4 @@ STATICFILES_DIRS=[
 #跳转回首页
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
+LOGIN_URL ='/'

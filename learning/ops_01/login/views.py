@@ -1,5 +1,5 @@
-from django.shortcuts import render, render_to_response
-from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
+from django.http import  HttpResponseRedirect
 from login import myforms
 from django.contrib import auth
 from django.contrib.auth.models import User
@@ -63,14 +63,7 @@ def register(request):
                                   {'registerfroms': registerfroms, "error_msg": error_msg})
     return render(request, 'login/register.html', {'registerfroms': registerfroms})
 
-def index(request):
-    #判断是否登录，如果没有登录则转向到登录界面
-    if not request.user.is_authenticated:
-        return HttpResponseRedirect('/')
-    else:
-        # 从session中取出用户名
-        username=request.session.get('username','anybody')
-        return render(request, 'mainpage/index.html',{'username':username})
+
 
 def logout(request):
     #注销用户，删除session中的username
